@@ -10,9 +10,10 @@
 # In order to compute errors for errors from different distributions requires uncommenting 
 # And to generate results for against dimension or sample size.
 
+#### sourcing functions ####
 source(file = "truncation/functions/data_generation.R")
 source(file = "truncation/functions/estimation.R")
-
+#### creating list to store objects ####
 list_setup = list(
   "adaHuber" = list(
     "t_2.1" = list(),
@@ -20,8 +21,6 @@ list_setup = list(
     "gaussian" = list()
   )
 ) 
-
-# list to store objects
 list_setup_2 <- list(
   "M" = list_setup,
   "F" = list_setup,
