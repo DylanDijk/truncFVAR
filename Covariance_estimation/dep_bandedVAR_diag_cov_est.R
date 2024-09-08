@@ -8,8 +8,8 @@
 # This makes little difference, as the data has been generated from a VAR(1) model.
 
 #### sourcing functions ####
-source(file = "truncation/functions/data_generation.R")
-source(file = "truncation/functions/estimation.R")
+source(file = "functions/data_generation.R")
+source(file = "functions/estimation.R")
 #### creating list to store objects ####
 list_setup = list(
   "truncated" = list(

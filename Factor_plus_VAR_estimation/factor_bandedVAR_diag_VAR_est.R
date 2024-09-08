@@ -11,9 +11,8 @@
 # In order to compute errors for errors from different distributions requires uncommenting 
 
 #### sourcing functions ####
-source(file = "truncation/functions/data_generation.R")
-source(file = "truncation/functions/estimation.R")
-source(file = "truncation/functions/fac_adj_funcs/fac_adj_funcs.R")
+source(file = "functions/data_generation.R")
+source(file = "functions/estimation.R")
 #### creating list to store objects ####
 list_setup = list(
   "truncated" = list(
@@ -96,23 +95,6 @@ maxEuclideanNormR <- cppFunction('double maxEuclideanNormR(NumericMatrix m) {
   
   return max_norm;
 }')
-
-
-
-glm_pca_fun = function(x, q){
-  if(q > 0){
-    mpca = m.static.pca(x, q = q)
-    xx_c = mpca$f %*% t(mpca$lam)
-    xx_i = x - xx_c
-    glmn = sparsevar::fitVAR(xx_i, p = 1, method = "cv", parallel = TRUE, ncores = 4)
-  } else {
-    glmn = sparsevar::fitVAR(x, p = 1)
-  }  
-  glmn_A = glmn$A[[1]]
-  return(list(A = glmn_A, glmn = glmn, common = xx_c))
-}
-
-
 
 
 
