@@ -241,7 +241,8 @@ cross_val_and_error = function(data, n_tau, lag, error = NULL, trim, trim_d, tri
 
 # takes a data matrix
 # And returns a truncated data matrix where tau has been chosen by cross-validation.
-cross_val_and_trunc = function(data, n_tau, lag, trim, trim_d, trim_all, max = T, cv_lag= F, standardise = T){
+# Previously, n_tau, lag, trim, trim_d, trim_all did not have default arguments set.
+cross_val_and_trunc = function(data, n_tau = 60, lag = 0, trim = 1, trim_d = 1, trim_all = F, max = T, cv_lag= F, standardise = T){
   
   if(!cv_lag){
     tau_scores = cross_val(data, n_tau, lag, trim, trim_d, trim_all, max = max, standardise = standardise)
