@@ -325,7 +325,7 @@ factor_mod_data_VAR_idio = function(dist = "t", innov_df = 2.1, indo_A = A_coeff
       }
       return(A_norm)
     }
-    # browser()
+    
     for(i in 1:nrow(n_p)){
       A_norm[[i]] = A_norm_fun(indo = var_indo[[i]], fac = var_factor[[i]], A_norm = A_norm[[i]], lambda_list = lambda_list[[i]], A_coeff = indo_A[[i]])
     }
