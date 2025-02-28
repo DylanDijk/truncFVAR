@@ -414,11 +414,39 @@ application in the paper.</p>
 <summary>
 Covariance estimation example
 </summary>
+<p>This example looks at covariance estimation, with truncation, for
+data generated from a VAR model.</p>
+<p>I source the <code>estimation.r</code> script from this repo, as it
+contains a function to calculate the true covariance matrix of a VAR
+process given the coefficient matrix A</p>
+<pre class="r"><code>source(&quot;https://raw.githubusercontent.com/DylanDijk/truncFVAR/master/functions/estimation.R&quot;)</code></pre>
+<div id="generating-data" class="section level4">
+<h4>Generating data</h4>
+<pre class="r"><code>VAR_data = fnets::sim.var(n = 200, p = 50, heavy = TRUE, df = 2.1)</code></pre>
+</div>
+<div id="truncating-the-data" class="section level4">
+<h4>Truncating the data</h4>
+<pre class="r"><code>VAR_data_tr = fnets::cv_trunc(data = VAR_data$data, cv_lag = 1, standardise = FALSE)$data</code></pre>
+</div>
+<div id="computing-the-true-covariance-of-the-var1-process" class="section level4">
+<h4>Computing the true covariance of the VAR(1) process</h4>
+<pre class="r"><code>true_cov = cov_of_var(A = VAR_data$A)</code></pre>
+</div>
+<div id="computing-sample-covariance-for-the-truncated-and-original-data" class="section level4">
+<h4>Computing sample covariance for the truncated and original data</h4>
+<pre class="r"><code>cov_est = fnets:::acf_no_center(data = VAR_data$data, lag = 0)
+cov_rob_est = fnets:::acf_no_center(data = VAR_data_tr, lag = 0)</code></pre>
+</div>
+<div id="covariance-max-norm-estimation-error" class="section level4">
+<h4>Covariance max norm estimation error</h4>
+<pre class="r"><code>norm(cov_est - true_cov, &quot;M&quot;)
+norm(cov_rob_est - true_cov, &quot;M&quot;)</code></pre>
 </details>
 <details>
 <summary>
 VAR estimation example
 </summary>
+</div>
 <div id="generate-heavy-tailed-var-data-and-estimating-a" class="section level4">
 <h4>Generate heavy-tailed VAR data and estimating A</h4>
 <p>A is estimated with fnets with <code>robust = TRUE</code></p>
@@ -437,6 +465,26 @@ image((VAR_data$A), col = heat.colors(10), axes = FALSE, zlim = zlim, main = &qu
 <summary>
 Factor-adjusted VAR estimation example
 </summary>
+</div>
+<div id="generate-heavy-tailed-factor-plus-var-data" class="section level4">
+<h4>Generate heavy-tailed factor plus VAR data</h4>
+<p>This process is generated as described in (F2) in the simulations
+section of the paper</p>
+<pre class="r"><code>source(&quot;https://raw.githubusercontent.com/DylanDijk/truncFVAR/master/functions/data_generation.R&quot;)
+facvar_dat = fac_var_dat(n = 200, p = 50, r = 3, dist = &quot;t&quot;, innov_df = 2.1)</code></pre>
+</div>
+<div id="estimating-a" class="section level4">
+<h4>Estimating A</h4>
+<pre class="r"><code>fnet_fit = fnets::fnets(x = facvar_dat, center = FALSE, q = 3, robust = TRUE, fm.restricted = TRUE)</code></pre>
+</div>
+<div id="looking-at-model-fit-1" class="section level4">
+<h4>Looking at model fit</h4>
+<p>Comparing robust estimate of A to the true A</p>
+<pre class="r"><code>par(mfrow = c(1,2), mar = c(1,1,2,1))
+A = attributes(facvar_dat)$A[[1]]
+zlim &lt;- range(c(A, fnet_fit$idio.var$beta))
+image(t(fnet_fit$idio.var$beta), col = heat.colors(10), axes = FALSE, zlim = zlim, main = &quot;fnets estimate&quot;)
+image(A, col = heat.colors(10), axes = FALSE, zlim = zlim, main = &quot;Ground truth&quot;)</code></pre>
 </details>
 </div>
 </div>

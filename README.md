@@ -58,31 +58,33 @@ devtools::install_github("haeran-cho/fnets@89da3c3")
 
 <details>
   <summary>Covariance estimation example</summary>
+  
+  
 This example looks at covariance estimation, with truncation, for data generated from a VAR model.
 
 I source the `estimation.r` script from this repo, as it contains a function to calculate the true covariance matrix of a VAR process given the coefficient matrix A
 ```r
 source("https://raw.githubusercontent.com/DylanDijk/truncFVAR/master/functions/estimation.R")
 ```
-Generating data
+#### Generating data
 ```r
 VAR_data = fnets::sim.var(n = 200, p = 50, heavy = TRUE, df = 2.1)
 ```
-Truncating the data
+#### Truncating the data
 ```r
 VAR_data_tr = fnets::cv_trunc(data = VAR_data$data, cv_lag = 1, standardise = FALSE)$data
 ```
-Computing the true covariance of the VAR(1) process
+#### Computing the true covariance of the VAR(1) process
 ```r
 true_cov = cov_of_var(A = VAR_data$A)
 ```
-Computing sample covariance for the truncated and original data
+#### Computing sample covariance for the truncated and original data
 ```r
 cov_est = fnets:::acf_no_center(data = VAR_data$data, lag = 0)
 cov_rob_est = fnets:::acf_no_center(data = VAR_data_tr, lag = 0)
 ```
 
-Covariance max norm estimation error
+#### Covariance max norm estimation error
 ```r
 norm(cov_est - true_cov, "M")
 norm(cov_rob_est - true_cov, "M")
@@ -113,6 +115,30 @@ image((VAR_data$A), col = heat.colors(10), axes = FALSE, zlim = zlim, main = "Gr
 
 <details>
   <summary>Factor-adjusted VAR estimation example</summary>
+
+#### Generate heavy-tailed factor plus VAR data 
+
+This process is generated as described in (F2) in the simulations section of the paper
+```r
+source("https://raw.githubusercontent.com/DylanDijk/truncFVAR/master/functions/data_generation.R")
+facvar_dat = fac_var_dat(n = 200, p = 50, r = 3, dist = "t", innov_df = 2.1)
+```
+
+#### Estimating A
+
+```r
+fnet_fit = fnets::fnets(x = facvar_dat, center = FALSE, q = 3, robust = TRUE, fm.restricted = TRUE)
+```
+
+#### Looking at model fit
+Comparing robust estimate of A to the true A
+```r
+par(mfrow = c(1,2), mar = c(1,1,2,1))
+A = attributes(facvar_dat)$A[[1]]
+zlim <- range(c(A, fnet_fit$idio.var$beta))
+image(t(fnet_fit$idio.var$beta), col = heat.colors(10), axes = FALSE, zlim = zlim, main = "fnets estimate")
+image(A, col = heat.colors(10), axes = FALSE, zlim = zlim, main = "Ground truth")
+```
 
 </details>
 
