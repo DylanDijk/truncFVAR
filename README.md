@@ -1,12 +1,13 @@
 # truncFVAR
 
-Code used for the paper: "Heavy-tailed robust estimation of factor-adjusted vector autoregressive models for high-dimensional time series"
+This repository contains the code used to generate the figures and tables for the simulation results, for the paper:  
+"Heavy-tailed robust estimation of factor-adjusted vector autoregressive models for high-dimensional time series"
 
-This repository contains the code used to generate the figures and tables for the simulation results.
 
 ## Example
 <details>
-  <summary>(Click to expand) Here we give an example of using the functions used for the simulations results, to truncate simulated data, and then comparing the errors of covariance estimation and Lasso estimation.</summary>
+  <summary>Example of using functions from this repository, to truncate simulated data, and then compare errors from covariance estimation and Lasso estimation, to estimation without truncation.
+</summary>
 
 #### sourcing functions
 ```r
@@ -54,6 +55,40 @@ To install the version used for the paper:
 ```r
 devtools::install_github("haeran-cho/fnets@89da3c3")
 ```
+
+<details>
+  <summary>Covariance estimation example</summary>
+This example looks at covariance estimation, with truncation, for data generated from a VAR model.
+
+I source the `estimation.r` script from this repo, as it contains a function to calculate the true covariance matrix of a VAR process given the coefficient matrix A
+```r
+source("https://raw.githubusercontent.com/DylanDijk/truncFVAR/master/functions/estimation.R")
+```
+Generating data
+```r
+VAR_data = fnets::sim.var(n = 200, p = 50, heavy = TRUE, df = 2.1)
+```
+Truncating the data
+```r
+VAR_data_tr = fnets::cv_trunc(data = VAR_data$data, cv_lag = 1, standardise = FALSE)$data
+```
+Computing the true covariance of the VAR(1) process
+```r
+true_cov = cov_of_var(A = VAR_data$A)
+```
+Computing sample covariance for the truncated and original data
+```r
+cov_est = fnets:::acf_no_center(data = VAR_data$data, lag = 0)
+cov_rob_est = fnets:::acf_no_center(data = VAR_data_tr, lag = 0)
+```
+
+Covariance max norm estimation error
+```r
+norm(cov_est - true_cov, "M")
+norm(cov_rob_est - true_cov, "M")
+```
+</details>
+
 <details>
   <summary>VAR estimation example</summary>
 
@@ -76,8 +111,13 @@ image((VAR_data$A), col = heat.colors(10), axes = FALSE, zlim = zlim, main = "Gr
 </details>
 
 
+<details>
+  <summary>Factor-adjusted VAR estimation example</summary>
+
+</details>
+
 ## Corresponding code to simulation results
 
-
+To add here, the scripts and corresponding figure and table numbers
 
 

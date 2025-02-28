@@ -354,18 +354,17 @@ display: none;
 
 <div id="truncfvar" class="section level1">
 <h1>truncFVAR</h1>
-<p>Code used for the paper: “Heavy-tailed robust estimation of
-factor-adjusted vector autoregressive models for high-dimensional time
-series”</p>
 <p>This repository contains the code used to generate the figures and
-tables for the simulation results.</p>
+tables for the simulation results, for the paper:<br />
+“Heavy-tailed robust estimation of factor-adjusted vector autoregressive
+models for high-dimensional time series”</p>
 <div id="example" class="section level2">
 <h2>Example</h2>
 <details>
 <summary>
-(Click to expand) Here we give an example of using the functions used
-for the simulations results, to truncate simulated data, and then
-comparing the errors of covariance estimation and Lasso estimation.
+Example of using functions from this repository, to truncate simulated
+data, and then compare errors from covariance estimation and Lasso
+estimation, to estimation without truncation.
 </summary>
 <div id="sourcing-functions" class="section level4">
 <h4>sourcing functions</h4>
@@ -397,7 +396,7 @@ norm(acf_no_center(VAR_data)-true_cov, &quot;M&quot;)
 norm(acf_no_center(trunc_VAR_data)-true_cov, &quot;M&quot;)</code></pre>
 </div>
 <div id="lasso" class="section level4">
-<h4>lasso</h4>
+<h4>Lasso</h4>
 <pre class="r"><code>norm(sparsevar::fitVAR(VAR_data, p = 1, parallel = T, ncores = 4)$A[[1]] - A, &quot;M&quot;)
 norm(sparsevar::fitVAR(trunc_VAR_data, p = 1, parallel = T, ncores = 4)$A[[1]] - A, &quot;M&quot;)</code></pre>
 </details>
@@ -413,20 +412,38 @@ application in the paper.</p>
 <pre class="r"><code>devtools::install_github(&quot;haeran-cho/fnets@89da3c3&quot;)</code></pre>
 <details>
 <summary>
+Covariance estimation example
+</summary>
+</details>
+<details>
+<summary>
 VAR estimation example
 </summary>
-<div id="generate-heavy-tailed-var-data" class="section level4">
-<h4>Generate heavy-tailed VAR data</h4>
-<pre class="r"><code>n_p = cbind(n = 200, p = 50)
-A = A_coeff_banded(n_p)
-VAR_data = VAR_1_data_ind(nsim = 1, n_p = n_p, innov_dist = &quot;t&quot;, innov_df = 2.1, A_coeff = A)$`(200,50)`[[1]]</code></pre>
-<pre class="r"><code>library(fnets)
-fnets::</code></pre>
+<div id="generate-heavy-tailed-var-data-and-estimating-a" class="section level4">
+<h4>Generate heavy-tailed VAR data and estimating A</h4>
+<p>A is estimated with fnets with <code>robust = TRUE</code></p>
+<pre class="r"><code>VAR_data = fnets::sim.var(n = 200, p = 50, heavy = TRUE, df = 2.1)
+fnet_fit = fnets::fnets(x = VAR_data$data, center = FALSE, q = 0, robust = TRUE, fm.restricted = TRUE)</code></pre>
+</div>
+<div id="looking-at-model-fit" class="section level4">
+<h4>Looking at model fit</h4>
+<p>Comparing robust estimate of A to the true A</p>
+<pre class="r"><code>par(mfrow = c(1,2), mar = c(1,1,2,1))
+zlim &lt;- range(c(fnet_fit$idio.var$beta, VAR_data$A))
+image(t(fnet_fit$idio.var$beta), col = heat.colors(10), axes = FALSE, zlim = zlim, main = &quot;fnets estimate&quot;)
+image((VAR_data$A), col = heat.colors(10), axes = FALSE, zlim = zlim, main = &quot;Ground truth&quot;)</code></pre>
+</details>
+<details>
+<summary>
+Factor-adjusted VAR estimation example
+</summary>
 </details>
 </div>
 </div>
 <div id="corresponding-code-to-simulation-results" class="section level2">
 <h2>Corresponding code to simulation results</h2>
+<p>To add here, the scripts and corresponding figure and table
+numbers</p>
 </div>
 </div>
 
