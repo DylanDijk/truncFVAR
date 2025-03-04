@@ -1,7 +1,6 @@
 # truncFVAR
 
-This repository contains the code used to generate the figures and tables for the simulation results, for the paper:  
-"Heavy-tailed robust estimation of factor-adjusted vector autoregressive models for high-dimensional time series"
+This repository contains the code used to generate the figures and tables for the simulation results, for the paper: "Heavy-tailed robust estimation of factor-adjusted vector autoregressive models for high-dimensional time series"
 
 
 ## Example
@@ -58,7 +57,8 @@ devtools::install_github("haeran-cho/fnets@89da3c3")
 
 <details>
   <summary>Covariance estimation example</summary>
-  
+
+<br>  
   
 This example looks at covariance estimation, with truncation, for data generated from a VAR model.
 
