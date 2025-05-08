@@ -155,6 +155,8 @@ image(A, col = heat.colors(10), axes = FALSE, zlim = zlim, main = "Ground truth"
 
 ## Corresponding code to simulation results
 
-To add here, the scripts and corresponding figure and table numbers
+To add here, the scripts and corresponding figure and table numbers.
+
+Maybe also remove or move Example section.
 
 
