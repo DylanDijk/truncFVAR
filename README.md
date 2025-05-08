@@ -2,6 +2,15 @@
 
 This repository contains the code used to generate the figures and tables for the simulation results, for the paper: "Heavy-tailed robust estimation of factor-adjusted vector autoregressive models for high-dimensional time series"
 
+**R version 4.4.2** was used.  
+To recreate the same package environment used to generate the results in the paper:
+
+1. Install R version 4.4.2
+2. Open `truncFVAR.Rproj` file
+3. Run the command
+`
+renv::restore()
+`
 
 ## Example
 <details>
@@ -54,6 +63,8 @@ To install the version used for the paper:
 ```r
 devtools::install_github("haeran-cho/fnets@89da3c3")
 ```
+
+### Examples using fnets
 
 <details>
   <summary>Covariance estimation example</summary>
