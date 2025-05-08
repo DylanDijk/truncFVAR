@@ -5,3 +5,5 @@
 *.Rproj
 readme_script.R
 example_script.R
+renv/library/
+renv/staging/
