@@ -8,7 +8,8 @@ library(fnets)
 # description of variables: https://users.ssc.wisc.edu/~bhansen/econometrics/FRED-MD_description.pdf
 set.seed(500)
 library(fbi) # version 0.7.0
-filepath <- "https://files.stlouisfed.org/files/htdocs/fred-md/monthly/2023-12.csv"
+# filepath <- "https://files.stlouisfed.org/files/htdocs/fred-md/monthly/2023-12.csv"
+filepath <- "Real_data_forecasting/FREDMD-2023-12.csv"
 data <- fredmd(filepath, date_start = NULL, date_end = NULL, transform = TRUE)
 data = data[13:nrow(data),] # starting dataset from 1960-01-01
 dates = data$date
