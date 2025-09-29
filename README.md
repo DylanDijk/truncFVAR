@@ -1,6 +1,6 @@
 # truncFVAR
 
-This repository contains the code used to generate the figures and tables for the paper:
+This repository contains the code used to generate the figures and tables for the paper:  
 ["Tail-robust estimation of factor-adjusted vector autoregressive models for high-dimensional time series"](https://arxiv.org/pdf/2509.22235)
 
 **R version 4.4.2** was used.  
