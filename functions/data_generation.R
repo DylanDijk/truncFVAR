@@ -406,9 +406,145 @@ fac_var_dat = function(n,p,r, dist = "gauss", innov_df, A = "banded"){
 
 
 
+#####################################################################################################################################################################################################################
+# Functions added from 02/03/26 in order to generate stable VAR process for lags greater than 1
 
+make_companion = function(A_list) {
+  stopifnot(is.list(A_list), length(A_list) >= 1)
+  
+  d <- length(A_list)
+  
+  # Check dimensions
+  p <- nrow(A_list[[1]])
+  if (p != ncol(A_list[[1]])) stop("A_list[[1]] must be square.")
+  
+  for (l in seq_len(d)) {
+    A <- A_list[[l]]
+    if (!is.matrix(A)) stop(sprintf("A_list[[%d]] is not a matrix.", l))
+    if (nrow(A) != p || ncol(A) != p) {
+      stop(sprintf("All A_l must be %dx%d. A_list[[%d]] is %dx%d.",
+                   p, p, l, nrow(A), ncol(A)))
+    }
+  }
+  
+  # Top block row: [A1 A2 ... Ad]
+  top <- do.call(cbind, A_list)
+  
+  # Lower blocks: identity on subdiagonal, zeros elsewhere
+  if (d == 1) {
+    return(top)  # companion is just A1
+  }
+  
+  lower_left <- diag(p * (d - 1))
+  lower <- cbind(lower_left, matrix(0, nrow = p * (d - 1), ncol = p))
+  
+  companion <- rbind(top, lower)
+  return(companion)
+}
 
+find_stable_scaling <- function(A_list, tol = 1e-6) {
+  
+  f <- function(c) {
+    A_scaled <- lapply(A_list, function(A) c*A)
+    C <- make_companion(A_scaled)
+    max(Mod(eigen(C, only.values=TRUE)$values))
+  }
+  
+  # If already stable
+  if (f(1) < 1) return(1)
+  
+  # Find upper bound
+  upper <- 1
+  while (f(upper) < 1) {
+    upper <- upper * 2
+  }
+  
+  # Find lower bound
+  lower <- 0
+  
+  # Root find: f(c) = 1
+  root <- uniroot(function(c) f(c) - 1,
+                  lower = lower,
+                  upper = upper,
+                  tol = tol)$root
+  
+  root
+}
 
+A_coeff_banded_d = function(n_p, d, target = 0.99){
+  
+  A_coeff = vector("list", nrow(n_p))
+  
+  for(k in 1:nrow(n_p)){
+    
+    names(A_coeff)[k] <- paste("(", n_p[k, "n"], ",", n_p[k, "p"], ")", sep = "")
+    
+    p = n_p[k, "p"]
+    
+    A_base = matrix(0, p, p)
+    diag(A_base) = 0.5
+    diag(A_base[-1, ]) = 0.4
+    diag(A_base[, -1]) = -0.4
+    
+    A_list = lapply(1:d, function(l) (0.9^(l-1)) * A_base)
+    
+    c = find_stable_scaling(A_list)
+    if(c != 1){c = c * 0.99}
+    
+    A_list = lapply(A_list, function(A) c * A)
+    
+    
+    A_coeff[[k]] = A_list
+  }
+  
+  return(A_coeff)
+}
+
+VAR_d_data_ind = function(nsim, n_p, A_coeff, innov_df, covstr = NULL, innov_dist = "t"){
+  
+  sim_VAR_data = vector(mode = "list", length = nrow(n_p))
+  
+  list_names <- character(length = nrow(n_p))
+  
+  
+  # Loop through each row of the matrix and create the strings
+  for (i in 1:nrow(n_p)) {
+    list_names[i] <- paste("(", n_p[i, "n"], ",", n_p[i, "p"], ")", sep = "")
+  }
+  
+  names(sim_VAR_data) = list_names
+  
+  for(i in 1:nrow(n_p)){
+    # sim_VAR_data[[list_names[i]]] = vector(mode = "list", length = nsim)
+    sim_VAR_data[[i]] = vector(mode = "list", length = nsim)
+    attr(sim_VAR_data[[i]], "A") = vector(mode = "list", length = nsim)
+    
+    n = n_p[i, "n"]
+    p = n_p[i, "p"]
+    
+    A = A_coeff[[i]]
+    d = length(A); burn = 200; n_total = n + burn
+    
+    for(k in 1:nsim){
+      
+      data = matrix(0, nrow = n_total, ncol = p)
+      
+      for (t in 1:d) {
+        data[t, ] = add_innov(data = rep(0, p), innov_dist = innov_dist, covstr = covstr[[i]], p = p, innov_df = innov_df)
+      }
+      
+      for(j in (d+1):n_total){
+        for (lag in 1:d) {
+          data[j,] = data[j,] + A[[lag]] %*% data[j - lag, ]
+        }
+        data[j,] = add_innov(data = data[j,], innov_dist = innov_dist, covstr = covstr[[i]], p = p, innov_df = innov_df)
+      }
+      # sim_VAR_data[[list_names[i]]][[k]] = data
+      sim_VAR_data[[i]][[k]] = data[(burn + 1):n_total, , drop = FALSE]
+    }
+  }
+  return(sim_VAR_data)
+}
 
 
 
