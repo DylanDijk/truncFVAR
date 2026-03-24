@@ -287,7 +287,7 @@ rand_D_mat = function(p){
 # this function generates data from the factor model with VAR errors
 # requires A, Lambda, and D.
 # If norm_loading is T then loading entries are normalised
-factor_mod_data_VAR_idio = function(dist = "t", innov_df = 2.1, indo_A = A_coeff, n_p, fac_var_ret = F, norm_loading = F){
+factor_mod_data_VAR_idio = function(dist = "t", innov_df = 2.1, indo_A = A_coeff, n_p, fac_var_ret = F, norm_loading = F, xi_n = FALSE){
   
   var_factor = VAR_1_data_ind(nsim = nsim, n_p = n_r, A_coeff = rand_D_mat, innov_df = innov_df, innov_dist = dist)
   var_indo = VAR_1_data_ind(nsim = nsim, n_p = n_p, A_coeff = indo_A, innov_df = innov_df, innov_dist = dist)
@@ -358,6 +358,13 @@ factor_mod_data_VAR_idio = function(dist = "t", innov_df = 2.1, indo_A = A_coeff
   }
   if(norm_loading){
     attr(data_comb, "A_norm") = A_norm
+  }
+  if(xi_n){
+    attr(data_comb, "xi_n") = lapply(var_indo, function(sim_list){
+      lapply(sim_list, function(mat){
+        mat[nrow(mat), ]
+      })
+    })
   }
   
   return(data_comb)
