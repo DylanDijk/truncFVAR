@@ -1,3 +1,9 @@
+##########################################################################################################################################
+# This script generates the table containing forecasting performance results 
+  # - using the results generated from the forecasting_store_all_truncV1.R script
+##########################################################################################################################################
+
+
 ####### trunc V1 results #############
 
 res_t21 = readRDS("revision_scripts/comment_5/no_trunc_Xn//fac_var_forecasting_t21_truncV1.Rds")

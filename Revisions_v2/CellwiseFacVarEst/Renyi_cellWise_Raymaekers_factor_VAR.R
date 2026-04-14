@@ -1,3 +1,9 @@
+##########################################################################################################################################
+# This script gets the estimation performance when using the wrapping function of Raymaekers
+# and Rousseeuw (2021) to the data, prior to estimating the factor-adjusted VAR model. With Renyi VAR coefficient 
+##########################################################################################################################################
+
+
 ##########################################################################################################################################################
 # This script we are looking to try the cellWise R package of Raymaekers, for factor plus VAR estimation.
 

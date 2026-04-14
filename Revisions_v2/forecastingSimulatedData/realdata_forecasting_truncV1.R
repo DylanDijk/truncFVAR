@@ -1,3 +1,9 @@
+##########################################################################################################################################
+# This script carries out the real data forecasting exercise where the observation X_n is not truncated in the estimate of the 
+# best linear predictor of the common component. Or when estimating the idiosyncratic component.
+##########################################################################################################################################
+
+
 # This script uses the fnets package, of the version on github with commit 89da3c3 made on Nov 20, 2024
 # To install:
 # devtools::install_github("haeran-cho/fnets@89da3c3")

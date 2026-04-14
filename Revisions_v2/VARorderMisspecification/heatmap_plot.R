@@ -1,3 +1,8 @@
+##########################################################################################################################################
+# Generates heatmap of average estimate truncated mean estimate when the VAR order used for fitting is 3, but the true VAR order is 2.
+  # The true VAR coefficient matrix is banded, so is the same across all the simulations.
+##########################################################################################################################################
+
 
 ########################### FINAL clean plots for the response letter #####################################################
 

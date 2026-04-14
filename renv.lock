@@ -9,6 +9,30 @@
     ]
   },
   "Packages": {
+    "DEoptimR": {
+      "Package": "DEoptimR",
+      "Version": "1.1-4",
+      "Source": "Repository",
+      "Date": "2025-07-27",
+      "Title": "Differential Evolution Optimization in Pure R",
+      "Authors@R": "c( person(c(\"Eduardo\", \"L. T.\"), \"Conceicao\", role = c(\"aut\", \"cre\"), email = \"mail@eduardoconceicao.org\"), person(\"Martin\", \"Maechler\", role = \"ctb\", email = \"maechler@stat.math.ethz.ch\", comment = c(ORCID = \"0000-0002-8685-9910\")) )",
+      "URL": "svn://svn.r-forge.r-project.org/svnroot/robustbase/pkg/DEoptimR",
+      "Description": "Differential Evolution (DE) stochastic heuristic algorithms for global optimization of problems with and without general constraints. The aim is to curate a collection of its variants that (1) do not sacrifice simplicity of design, (2) are essentially tuning-free, and (3) can be efficiently implemented directly in the R language. Currently, it provides implementations of the algorithms 'jDE' by Brest et al. (2006) <doi:10.1109/TEVC.2006.872133> for single-objective optimization and 'NCDE' by Qu et al. (2012) <doi:10.1109/TEVC.2011.2161873> for multimodal optimization (single-objective problems with multiple solutions).",
+      "Imports": [
+        "stats"
+      ],
+      "Enhances": [
+        "robustbase"
+      ],
+      "License": "GPL (>= 2)",
+      "Author": "Eduardo L. T. Conceicao [aut, cre], Martin Maechler [ctb] (ORCID: <https://orcid.org/0000-0002-8685-9910>)",
+      "Maintainer": "Eduardo L. T. Conceicao <mail@eduardoconceicao.org>",
+      "Repository": "CRAN",
+      "Repository/R-Forge/Project": "robustbase",
+      "Repository/R-Forge/Revision": "1009",
+      "Repository/R-Forge/DateTimeStamp": "2025-07-27 18:16:52",
+      "NeedsCompilation": "no"
+    },
     "MASS": {
       "Package": "MASS",
       "Version": "7.3-61",
@@ -351,6 +375,54 @@
       "Repository/R-Forge/Revision": "177",
       "Repository/R-Forge/DateTimeStamp": "2018-08-17 17:45:18",
       "NeedsCompilation": "yes"
+    },
+    "cellWise": {
+      "Package": "cellWise",
+      "Version": "2.5.5",
+      "Source": "Repository",
+      "Type": "Package",
+      "Date": "2026-01-05",
+      "Title": "Analyzing Data with Cellwise Outliers",
+      "Authors@R": "c( person(given=\"Jakob\",family=\"Raymaekers\", role = c(\"aut\",\"cre\"), email=\"jakob.raymaekers@uantwerpen.be\"), person(given=\"Peter\",family=\"Rousseeuw\", role = c(\"aut\")), person(given=\"Wannes\",family=\"Van den Bossche\", role = c(\"ctb\")), person(given=\"Mia\",family=\"Hubert\", role = c(\"ctb\"))  )",
+      "Depends": [
+        "R (>= 4.0.0)"
+      ],
+      "Suggests": [
+        "knitr",
+        "robustHD",
+        "MASS",
+        "ellipse",
+        "markdown",
+        "rospca",
+        "GSE"
+      ],
+      "Imports": [
+        "reshape2",
+        "scales",
+        "ggplot2",
+        "matrixStats",
+        "gridExtra",
+        "robustbase",
+        "rrcov",
+        "svd",
+        "stats",
+        "utils",
+        "shape",
+        "Rcpp (>= 0.12.10.14)"
+      ],
+      "LinkingTo": [
+        "Rcpp",
+        "RcppArmadillo (>= 0.7.600.1.0)"
+      ],
+      "Description": "Tools for detecting cellwise outliers and robust methods to analyze data which may contain them. Contains the implementation of the algorithms described in Rousseeuw and Van den Bossche (2018) <doi:10.1080/00401706.2017.1340909> (open access) Hubert et al. (2019) <doi:10.1080/00401706.2018.1562989> (open access), Raymaekers and Rousseeuw (2021) <doi:10.1080/00401706.2019.1677270> (open access), Raymaekers and Rousseeuw (2021) <doi:10.1007/s10994-021-05960-5> (open access), Raymaekers and Rousseeuw (2021) <doi:10.52933/jdssv.v1i3.18> (open access), Raymaekers and Rousseeuw (2022) <doi:10.1080/01621459.2023.2267777> (open access) Rousseeuw (2022) <doi:10.1016/j.ecosta.2023.01.007> (open access). Examples can be found in the vignettes: \"DDC_examples\", \"MacroPCA_examples\", \"wrap_examples\", \"transfo_examples\", \"DI_examples\", \"cellMCD_examples\" , \"Correspondence_analysis_examples\", and \"cellwise_weights_examples\".",
+      "License": "GPL (>= 2)",
+      "LazyData": "No",
+      "Author": "Jakob Raymaekers [aut, cre], Peter Rousseeuw [aut], Wannes Van den Bossche [ctb], Mia Hubert [ctb]",
+      "Maintainer": "Jakob Raymaekers <jakob.raymaekers@uantwerpen.be>",
+      "VignetteBuilder": "knitr",
+      "RoxygenNote": "7.1.2",
+      "NeedsCompilation": "yes",
+      "Repository": "CRAN"
     },
     "cli": {
       "Package": "cli",
@@ -1139,6 +1211,36 @@
       "Maintainer": "Jennifer Bryan <jenny@posit.co>",
       "Repository": "CRAN"
     },
+    "gridExtra": {
+      "Package": "gridExtra",
+      "Version": "2.3",
+      "Source": "Repository",
+      "Authors@R": "c(person(\"Baptiste\", \"Auguie\", email = \"baptiste.auguie@gmail.com\", role = c(\"aut\", \"cre\")), person(\"Anton\", \"Antonov\", email = \"tonytonov@gmail.com\", role = c(\"ctb\")))",
+      "License": "GPL (>= 2)",
+      "Title": "Miscellaneous Functions for \"Grid\" Graphics",
+      "Type": "Package",
+      "Description": "Provides a number of user-level functions to work with \"grid\" graphics, notably to arrange multiple grid-based plots on a page, and draw tables.",
+      "VignetteBuilder": "knitr",
+      "Imports": [
+        "gtable",
+        "grid",
+        "grDevices",
+        "graphics",
+        "utils"
+      ],
+      "Suggests": [
+        "ggplot2",
+        "egg",
+        "lattice",
+        "knitr",
+        "testthat"
+      ],
+      "RoxygenNote": "6.0.1",
+      "NeedsCompilation": "no",
+      "Author": "Baptiste Auguie [aut, cre], Anton Antonov [ctb]",
+      "Maintainer": "Baptiste Auguie <baptiste.auguie@gmail.com>",
+      "Repository": "CRAN"
+    },
     "gtable": {
       "Package": "gtable",
       "Version": "0.3.5",
@@ -1538,6 +1640,38 @@
       "NeedsCompilation": "yes",
       "Repository": "CRAN"
     },
+    "matrixStats": {
+      "Package": "matrixStats",
+      "Version": "1.5.0",
+      "Source": "Repository",
+      "Depends": [
+        "R (>= 3.4.0)"
+      ],
+      "Suggests": [
+        "utils",
+        "base64enc",
+        "ggplot2",
+        "knitr",
+        "markdown",
+        "microbenchmark",
+        "R.devices",
+        "R.rsp"
+      ],
+      "VignetteBuilder": "R.rsp",
+      "Title": "Functions that Apply to Rows and Columns of Matrices (and to Vectors)",
+      "Authors@R": "c( person(\"Henrik\", \"Bengtsson\", role=c(\"aut\", \"cre\", \"cph\"), email=\"henrikb@braju.com\"), person(\"Constantin\", \"Ahlmann-Eltze\", role = \"ctb\"), person(\"Hector\", \"Corrada Bravo\", role=\"ctb\"), person(\"Robert\", \"Gentleman\", role=\"ctb\"), person(\"Jan\", \"Gleixner\", role=\"ctb\"), person(\"Peter\", \"Hickey\", role=\"ctb\"), person(\"Ola\", \"Hossjer\", role=\"ctb\"), person(\"Harris\", \"Jaffee\", role=\"ctb\"), person(\"Dongcan\", \"Jiang\", role=\"ctb\"), person(\"Peter\", \"Langfelder\", role=\"ctb\"), person(\"Brian\", \"Montgomery\", role=\"ctb\"), person(\"Angelina\", \"Panagopoulou\", role=\"ctb\"), person(\"Hugh\", \"Parsonage\", role=\"ctb\"), person(\"Jakob Peder\", \"Pettersen\", role=\"ctb\"))",
+      "Author": "Henrik Bengtsson [aut, cre, cph], Constantin Ahlmann-Eltze [ctb], Hector Corrada Bravo [ctb], Robert Gentleman [ctb], Jan Gleixner [ctb], Peter Hickey [ctb], Ola Hossjer [ctb], Harris Jaffee [ctb], Dongcan Jiang [ctb], Peter Langfelder [ctb], Brian Montgomery [ctb], Angelina Panagopoulou [ctb], Hugh Parsonage [ctb], Jakob Peder Pettersen [ctb]",
+      "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
+      "Description": "High-performing functions operating on rows and columns of matrices, e.g. col / rowMedians(), col / rowRanks(), and col / rowSds().  Functions optimized per data type and for subsetted calculations such that both memory usage and processing time is minimized.  There are also optimized vector-based methods, e.g. binMeans(), madDiff() and weightedMedian().",
+      "License": "Artistic-2.0",
+      "LazyLoad": "TRUE",
+      "NeedsCompilation": "yes",
+      "ByteCompile": "TRUE",
+      "URL": "https://github.com/HenrikBengtsson/matrixStats",
+      "BugReports": "https://github.com/HenrikBengtsson/matrixStats/issues",
+      "RoxygenNote": "7.3.2",
+      "Repository": "CRAN"
+    },
     "mgcv": {
       "Package": "mgcv",
       "Version": "1.9-1",
@@ -1696,6 +1830,32 @@
       "NeedsCompilation": "yes",
       "Author": "José Pinheiro [aut] (S version), Douglas Bates [aut] (up to 2007), Saikat DebRoy [ctb] (up to 2002), Deepayan Sarkar [ctb] (up to 2005), EISPACK authors [ctb] (src/rs.f), Siem Heisterkamp [ctb] (Author fixed sigma), Bert Van Willigen [ctb] (Programmer fixed sigma), Johannes Ranke [ctb] (varConstProp()), R Core Team [aut, cre]",
       "Maintainer": "R Core Team <R-core@R-project.org>",
+      "Repository": "CRAN"
+    },
+    "pcaPP": {
+      "Package": "pcaPP",
+      "Version": "2.0-5",
+      "Source": "Repository",
+      "VersionNote": "Released 2.0-4-1 on 2024-08-09 on CRAN",
+      "Title": "Robust PCA by Projection Pursuit",
+      "Maintainer": "Valentin Todorov <valentin.todorov@chello.at>",
+      "Authors@R": "c(person(given = \"Peter\", family = \"Filzmoser\", role = \"aut\"), person(given = \"Heinrich\", family = \"Fritz\", role = \"aut\"), person(given = \"Klaudius\", family = \"Kalcher\", role = \"aut\"), person(given = \"Valentin\", family = \"Todorov\", role = \"cre\", email = \"valentin.todorov@chello.at\"))",
+      "Depends": [
+        "R(>= 3.6.2)"
+      ],
+      "Imports": [
+        "mvtnorm",
+        "methods"
+      ],
+      "Suggests": [
+        "robustbase"
+      ],
+      "Description": "Provides functions for robust PCA by projection pursuit. The methods are described in Croux et al. (2006) <doi:10.2139/ssrn.968376>, Croux et al. (2013) <doi:10.1080/00401706.2012.727746>, Todorov and Filzmoser (2013) <doi:10.1007/978-3-642-33042-1_31>.",
+      "License": "GPL (>= 3)",
+      "URL": "https://github.com/valentint/pcaPP",
+      "BugReports": "https://github.com/valentint/pcaPP/issues",
+      "NeedsCompilation": "yes",
+      "Author": "Peter Filzmoser [aut], Heinrich Fritz [aut], Klaudius Kalcher [aut], Valentin Todorov [cre]",
       "Repository": "CRAN"
     },
     "picasso": {
@@ -2170,6 +2330,98 @@
       "Maintainer": "Lionel Henry <lionel@posit.co>",
       "Repository": "CRAN"
     },
+    "robustbase": {
+      "Package": "robustbase",
+      "Version": "0.99-7",
+      "Source": "Repository",
+      "VersionNote": "Released 0.99-6 on 2025-09-03, 0.99-5 on 2024-11-01, 0.99-4-1 on 2024-09-24, 0.99-4 on 2024-08-19 to CRAN",
+      "Date": "2026-02-03",
+      "Title": "Basic Robust Statistics",
+      "Authors@R": "c(person(\"Martin\",\"Maechler\", role=c(\"aut\",\"cre\"), email=\"maechler@stat.math.ethz.ch\", comment = c(ORCID = \"0000-0002-8685-9910\")) , person(\"Peter\", \"Rousseeuw\", role=\"ctb\", comment = \"Qn and Sn\") , person(\"Christophe\", \"Croux\", role=\"ctb\", comment = \"Qn and Sn\") , person(\"Valentin\", \"Todorov\", role = \"aut\", email = \"valentin.todorov@chello.at\", comment = \"most robust Cov\") , person(\"Andreas\", \"Ruckstuhl\", role = \"aut\", email = \"andreas.ruckstuhl@zhaw.ch\", comment = \"nlrob, anova, glmrob\") , person(\"Matias\", \"Salibian-Barrera\", role = \"aut\", email = \"matias@stat.ubc.ca\", comment = \"lmrob orig.\") , person(\"Tobias\", \"Verbeke\", role = c(\"ctb\",\"fnd\"), email = \"tobias.verbeke@openanalytics.eu\", comment = \"mc, adjbox\") , person(\"Manuel\", \"Koller\", role = \"aut\", email = \"koller.manuel@gmail.com\", comment = \"mc, lmrob, psi-func.\") , person(c(\"Eduardo\", \"L. T.\"), \"Conceicao\", role = \"aut\", email = \"mail@eduardoconceicao.org\", comment = \"MM-, tau-, CM-, and MTL- nlrob\") , person(\"Maria\", \"Anna di Palma\", role = \"ctb\", comment = \"initial version of Comedian\") )",
+      "URL": "https://robustbase.R-forge.R-project.org/, https://R-forge.R-project.org/R/?group_id=59, https://R-forge.R-project.org/scm/viewvc.php/pkg/robustbase/?root=robustbase, svn://svn.r-forge.r-project.org/svnroot/robustbase/pkg/robustbase",
+      "BugReports": "https://R-forge.R-project.org/tracker/?atid=302&group_id=59",
+      "Description": "\"Essential\" Robust Statistics. Tools allowing to analyze data with robust methods.  This includes regression methodology including model selections and multivariate statistics where we strive to cover the book \"Robust Statistics, Theory and Methods\" by 'Maronna, Martin and Yohai'; Wiley 2006.",
+      "Depends": [
+        "R (>= 3.5.0)"
+      ],
+      "Imports": [
+        "stats",
+        "graphics",
+        "utils",
+        "methods",
+        "DEoptimR"
+      ],
+      "Suggests": [
+        "grid",
+        "MASS",
+        "lattice",
+        "boot",
+        "cluster",
+        "Matrix",
+        "robust",
+        "fit.models",
+        "MPV",
+        "xtable",
+        "ggplot2",
+        "GGally",
+        "RColorBrewer",
+        "reshape2",
+        "sfsmisc",
+        "catdata",
+        "doParallel",
+        "foreach",
+        "skewt"
+      ],
+      "SuggestsNote": "mostly only because of vignette graphics and simulation",
+      "Enhances": [
+        "robustX",
+        "rrcov",
+        "matrixStats",
+        "quantreg",
+        "Hmisc"
+      ],
+      "EnhancesNote": "linked to in man/*.Rd",
+      "LazyData": "yes",
+      "NeedsCompilation": "yes",
+      "License": "GPL (>= 2)",
+      "Author": "Martin Maechler [aut, cre] (ORCID: <https://orcid.org/0000-0002-8685-9910>), Peter Rousseeuw [ctb] (Qn and Sn), Christophe Croux [ctb] (Qn and Sn), Valentin Todorov [aut] (most robust Cov), Andreas Ruckstuhl [aut] (nlrob, anova, glmrob), Matias Salibian-Barrera [aut] (lmrob orig.), Tobias Verbeke [ctb, fnd] (mc, adjbox), Manuel Koller [aut] (mc, lmrob, psi-func.), Eduardo L. T. Conceicao [aut] (MM-, tau-, CM-, and MTL- nlrob), Maria Anna di Palma [ctb] (initial version of Comedian)",
+      "Maintainer": "Martin Maechler <maechler@stat.math.ethz.ch>",
+      "Repository": "CRAN"
+    },
+    "rrcov": {
+      "Package": "rrcov",
+      "Version": "1.7-7",
+      "Source": "Repository",
+      "VersionNote": "Released 1.7-6 on 2024-08-19 on CRAN",
+      "Title": "Scalable Robust Estimators with High Breakdown Point",
+      "Authors@R": "c(person(\"Valentin\", \"Todorov\", role = c(\"aut\", \"cre\"), email = \"valentin.todorov@chello.at\", comment=c(ORCID = \"0000-0003-4215-0245\")))",
+      "Description": "Robust Location and Scatter Estimation and Robust Multivariate Analysis with High Breakdown Point: principal component analysis (Filzmoser and Todorov (2013), <doi:10.1016/j.ins.2012.10.017>), linear and quadratic discriminant analysis (Todorov and Pires (2007)), multivariate tests (Todorov and Filzmoser (2010) <doi:10.1016/j.csda.2009.08.015>), outlier detection (Todorov et al. (2010) <doi:10.1007/s11634-010-0075-2>). See also Todorov and Filzmoser (2009) <urn:isbn:978-3838108148>, Todorov and Filzmoser (2010) <doi:10.18637/jss.v032.i03> and Boudt et al. (2019) <doi:10.1007/s11222-019-09869-x>.",
+      "Maintainer": "Valentin Todorov <valentin.todorov@chello.at>",
+      "Depends": [
+        "R (>= 2.10)",
+        "robustbase (>= 0.92.1)",
+        "methods"
+      ],
+      "Imports": [
+        "stats",
+        "stats4",
+        "mvtnorm",
+        "lattice",
+        "pcaPP"
+      ],
+      "Suggests": [
+        "grid",
+        "MASS"
+      ],
+      "LazyLoad": "yes",
+      "License": "GPL (>= 3)",
+      "URL": "https://github.com/valentint/rrcov",
+      "BugReports": "https://github.com/valentint/rrcov/issues",
+      "Repository": "CRAN",
+      "NeedsCompilation": "yes",
+      "Author": "Valentin Todorov [aut, cre] (<https://orcid.org/0000-0003-4215-0245>)",
+      "RoxygenNote": "7.3.2"
+    },
     "scales": {
       "Package": "scales",
       "Version": "1.3.0",
@@ -2416,6 +2668,28 @@
       "NeedsCompilation": "yes",
       "Author": "Terry M Therneau [aut, cre], Thomas Lumley [ctb, trl] (original S->R port and R maintainer until 2009), Atkinson Elizabeth [ctb], Crowson Cynthia [ctb]",
       "Maintainer": "Terry M Therneau <therneau.terry@mayo.edu>",
+      "Repository": "CRAN"
+    },
+    "svd": {
+      "Package": "svd",
+      "Version": "0.5.8",
+      "Source": "Repository",
+      "Type": "Package",
+      "Imports": [
+        "methods"
+      ],
+      "Suggests": [
+        "testthat (>= 0.7)"
+      ],
+      "Title": "Interfaces to Various State-of-Art SVD and Eigensolvers",
+      "Author": "Anton Korobeynikov [aut, cre], Rasmus Munk Larsen [ctb, cph], Lawrence Berkeley National Laboratory [ctb, cph]",
+      "Maintainer": "Anton Korobeynikov <anton@korobeynikov.info>",
+      "Description": "R bindings to SVD and eigensolvers (PROPACK, nuTRLan).",
+      "License": "BSD_3_clause + file LICENSE",
+      "Copyright": "see file COPYRIGHTS",
+      "URL": "https://github.com/asl/svd",
+      "Authors@R": "c(person(given = \"Anton\", family = \"Korobeynikov\", role = c(\"aut\", \"cre\"), email = \"anton@korobeynikov.info\"), person(given = c(\"Rasmus\", \"Munk\"), family = \"Larsen\", role = c(\"ctb\", \"cph\")), person(given = c(\"Lawrence\", \"Berkeley\", \"National\"), family = \"Laboratory\", role = c(\"ctb\", \"cph\")))",
+      "NeedsCompilation": "yes",
       "Repository": "CRAN"
     },
     "tibble": {
@@ -2800,6 +3074,37 @@
       "Author": "Jim Hester [aut], Lionel Henry [aut, cre], Kirill Müller [aut], Kevin Ushey [aut], Hadley Wickham [aut], Winston Chang [aut], Jennifer Bryan [ctb], Richard Cotton [ctb], Posit Software, PBC [cph, fnd]",
       "Maintainer": "Lionel Henry <lionel@posit.co>",
       "Repository": "CRAN"
+    },
+    "xtable": {
+      "Package": "xtable",
+      "Version": "1.8-4",
+      "Source": "URL",
+      "Date": "2019-04-08",
+      "Title": "Export Tables to LaTeX or HTML",
+      "Authors@R": "c(person(\"David B.\", \"Dahl\", role=\"aut\"), person(\"David\", \"Scott\", role=c(\"aut\",\"cre\"), email=\"d.scott@auckland.ac.nz\"), person(\"Charles\", \"Roosen\", role=\"aut\"), person(\"Arni\", \"Magnusson\", role=\"aut\"), person(\"Jonathan\", \"Swinton\", role=\"aut\"), person(\"Ajay\", \"Shah\", role=\"ctb\"), person(\"Arne\", \"Henningsen\", role=\"ctb\"), person(\"Benno\", \"Puetz\", role=\"ctb\"), person(\"Bernhard\", \"Pfaff\", role=\"ctb\"), person(\"Claudio\", \"Agostinelli\", role=\"ctb\"), person(\"Claudius\", \"Loehnert\", role=\"ctb\"), person(\"David\", \"Mitchell\", role=\"ctb\"), person(\"David\", \"Whiting\", role=\"ctb\"), person(\"Fernando da\", \"Rosa\", role=\"ctb\"), person(\"Guido\", \"Gay\", role=\"ctb\"), person(\"Guido\", \"Schulz\", role=\"ctb\"), person(\"Ian\", \"Fellows\", role=\"ctb\"), person(\"Jeff\", \"Laake\", role=\"ctb\"), person(\"John\", \"Walker\", role=\"ctb\"), person(\"Jun\", \"Yan\", role=\"ctb\"), person(\"Liviu\", \"Andronic\", role=\"ctb\"), person(\"Markus\", \"Loecher\", role=\"ctb\"), person(\"Martin\", \"Gubri\", role=\"ctb\"), person(\"Matthieu\", \"Stigler\", role=\"ctb\"), person(\"Robert\", \"Castelo\", role=\"ctb\"), person(\"Seth\", \"Falcon\", role=\"ctb\"), person(\"Stefan\", \"Edwards\", role=\"ctb\"), person(\"Sven\", \"Garbade\", role=\"ctb\"), person(\"Uwe\", \"Ligges\", role=\"ctb\"))",
+      "Maintainer": "David Scott <d.scott@auckland.ac.nz>",
+      "Imports": [
+        "stats",
+        "utils"
+      ],
+      "Suggests": [
+        "knitr",
+        "plm",
+        "zoo",
+        "survival"
+      ],
+      "VignetteBuilder": "knitr",
+      "Description": "Coerce data to LaTeX and HTML tables.",
+      "URL": "http://xtable.r-forge.r-project.org/",
+      "Depends": [
+        "R (>= 2.10.0)"
+      ],
+      "License": "GPL (>= 2)",
+      "Repository": "CRAN",
+      "NeedsCompilation": "no",
+      "Author": "David B. Dahl [aut], David Scott [aut, cre], Charles Roosen [aut], Arni Magnusson [aut], Jonathan Swinton [aut], Ajay Shah [ctb], Arne Henningsen [ctb], Benno Puetz [ctb], Bernhard Pfaff [ctb], Claudio Agostinelli [ctb], Claudius Loehnert [ctb], David Mitchell [ctb], David Whiting [ctb], Fernando da Rosa [ctb], Guido Gay [ctb], Guido Schulz [ctb], Ian Fellows [ctb], Jeff Laake [ctb], John Walker [ctb], Jun Yan [ctb], Liviu Andronic [ctb], Markus Loecher [ctb], Martin Gubri [ctb], Matthieu Stigler [ctb], Robert Castelo [ctb], Seth Falcon [ctb], Stefan Edwards [ctb], Sven Garbade [ctb], Uwe Ligges [ctb]",
+      "RemoteType": "url",
+      "RemoteUrl": "https://cran.r-project.org/src/contrib/Archive/xtable/xtable_1.8-4.tar.gz"
     },
     "xts": {
       "Package": "xts",

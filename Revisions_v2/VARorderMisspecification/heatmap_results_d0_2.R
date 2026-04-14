@@ -1,6 +1,6 @@
 ##########################################################################################################################################
 # This script gets the VAR coefficient estimates with and without truncation, when the VAR order used for fitting is 3, but the true VAR order is 2.
-# Results are used to create the heatmap plot of the average truncated estimate 
+# Results are used to create the heatmap plot of the average truncated estimate.
 ##########################################################################################################################################
 
 # Need to first get functions to generate data

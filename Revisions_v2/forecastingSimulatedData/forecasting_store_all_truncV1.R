@@ -1,3 +1,9 @@
+##########################################################################################################################################
+# This script gets the next step forecast for simulated factor plus VAR data. And saves the "oracle" best linear predictor as well. 
+  # Need to uncomment the code corresponding to the distribution of interest for generating the data.
+  # These results are used to generate table containing forecasting performance results.
+##########################################################################################################################################
+
 # In this script I want to compute the forecast errors for simulated data.
 
 # Need to first get functions to generate data
