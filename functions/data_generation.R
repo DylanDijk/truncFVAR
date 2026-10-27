@@ -287,10 +287,10 @@ rand_D_mat = function(p){
 # this function generates data from the factor model with VAR errors
 # requires A, Lambda, and D.
 # If norm_loading is T then loading entries are normalised
-factor_mod_data_VAR_idio = function(dist = "t", innov_df = 2.1, indo_A = A_coeff, n_p, fac_var_ret = F, norm_loading = F, xi_n = FALSE){
+factor_mod_data_VAR_idio = function(dist = "t", innov_df = 2.1, indo_A = A_coeff, n_p, fac_var_ret = F, norm_loading = F, xi_n = FALSE, covstr = NULL){
   
   var_factor = VAR_1_data_ind(nsim = nsim, n_p = n_r, A_coeff = rand_D_mat, innov_df = innov_df, innov_dist = dist)
-  var_indo = VAR_1_data_ind(nsim = nsim, n_p = n_p, A_coeff = indo_A, innov_df = innov_df, innov_dist = dist)
+  var_indo = VAR_1_data_ind(nsim = nsim, n_p = n_p, A_coeff = indo_A, innov_df = innov_df, innov_dist = dist, covstr = covstr)
   
   n_p_names = names(A_coeff_banded(n_p))
   names(var_factor) = n_p_names
@@ -307,27 +307,37 @@ factor_mod_data_VAR_idio = function(dist = "t", innov_df = 2.1, indo_A = A_coeff
     # diag(t(lambda_list$`(200,50)`[[104]]) %*% cov_of_var(A = attributes(var_factor[[3]])$A[[104]]) %*% lambda_list$`(200,50)`[[104]])
     # )
     
-    A_norm_fun = function(indo, fac, A_norm, lambda_list, A_coeff){
+    A_norm_fun = function(indo, fac, A_norm, lambda_list, A_coeff, Sigma_eps = NULL){
       for(i in 1:nsim){
         if(is.function(indo_A)){
           A_norm[i,] =
-          sqrt(
-            diag(cov_of_var(A = attributes(indo)$A[[i]])) /
-            diag(t(lambda_list[[i]]) %*% cov_of_var(A = attributes(fac)$A[[i]]) %*% lambda_list[[i]])
-          )
+            sqrt(
+              diag(cov_of_var(A = attributes(indo)$A[[i]], Sigma_eps = Sigma_eps)) /
+                diag(t(lambda_list[[i]]) %*% cov_of_var(A = attributes(fac)$A[[i]]) %*% lambda_list[[i]])
+            )
         }else{
           A_norm[i,] =
             sqrt(
-              diag(cov_of_var(A = A_coeff)) /
+              diag(cov_of_var(A = A_coeff, Sigma_eps = Sigma_eps)) /
                 diag(t(lambda_list[[i]]) %*% cov_of_var(A = attributes(fac)$A[[i]]) %*% lambda_list[[i]])
             )
-        }  
+        }
       }
       return(A_norm)
     }
     
     for(i in 1:nrow(n_p)){
-      A_norm[[i]] = A_norm_fun(indo = var_indo[[i]], fac = var_factor[[i]], A_norm = A_norm[[i]], lambda_list = lambda_list[[i]], A_coeff = indo_A[[i]])
+      
+      Sigma_eps_i = if(is.null(covstr)) NULL else power_dec[[i]]
+      
+      A_norm[[i]] = A_norm_fun(
+        indo = var_indo[[i]],
+        fac = var_factor[[i]],
+        A_norm = A_norm[[i]],
+        lambda_list = lambda_list[[i]],
+        A_coeff = indo_A[[i]],
+        Sigma_eps = Sigma_eps_i
+      )
     }
     
   }

@@ -321,10 +321,15 @@ cross_val_lag = function(data, n_tau, lag, trim = 1, trim_d = 1, trim_all = F, m
 
 # I now provide a function that calculates this 
 library(Matrix)
-cov_of_var = function(tol = 2.220446e-16, A, print = F){
+cov_of_var = function(tol = 2.220446e-16, A, print = F, Sigma_eps = NULL){
   p = ncol(A)
   M_old = A
-  N_old = Diagonal(p)
+  
+  if(is.null(Sigma_eps)){
+    Sigma_eps = Diagonal(p)
+  }
+  
+  N_old = Sigma_eps
   converged = F
   
   while(!converged) {
